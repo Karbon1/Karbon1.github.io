@@ -4,7 +4,7 @@ title: TokenEngineering Events Calendar
 sidebar_label: Events
 ---
 ## TokenEngineering Events & Public Lectures
-We run public events almost every single week and invite anyone interested in Token Engineering to join us. See you there!
+We run the public events almost every single week and invite anyone interested in Token Engineering to join us. See you there!
 
 ## September 2022 
 
