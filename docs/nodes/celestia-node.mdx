@@ -1,0 +1,581 @@
+---
+sidebar_label: Installing celestia-node
+---
+
+import constants from "../../versions/constants.js";
+import mochaVersions from "../../versions/mocha_versions.js";
+import arabicaVersions from "../../versions/arabica_versions.js";
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js"
+
+# celestia-node
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+````
+
+This tutorial goes over building and installing `celestia-node`. This
+tutorial assumes you completed the steps in setting up your development
+environment [here](./environment.mdx).
+
+## Install celestia-node
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+````
+
+## Network selection
+
+Note: If you do not select a network, the default network will be 'Mocha'.
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+```sh
+celestia light init --p2p.network blockspacerace 
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
+```
+
+Here's an example for blockspacerace:
+
+
+```sh
+rm -rf ~./celestia-light-blockspacerace && celestia light init --p2p.network blockspacerace
+```
+
+Your output will look similar to below:
+
+```sh
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh
+celestia light init --p2p.network mocha 
+celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
+```
+
+Here's an example for Mocha:
+
+
+```sh
+rm -rf ~./celestia-light-mocha && celestia light init --p2p.network mocha
+```
+
+Your output will look similar to below:
+
+```sh
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+You can perform network selection in `celestia-node` between Arabica and
+Mocha. However, you should note that networks work best on the `celestia-node`
+versions mentioned above.
+
+```sh
+celestia light init --p2p.network arabica
+celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
+```
+
+Here's an example for Arabica:
+
+<pre><code>
+rm -rf ~./celestia-light-{constants.arabicaChainId} && celestia light init --p2p.network arabica
+</code></pre>
+
+Your output will look similar to below:
+
+<pre><code>
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-{constants.arabicaChainId}' <br/>
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{`{"path": "/Users/joshstein/.celestia-light-${constants.arabicaChainId}/config.toml"}`}` <br/>
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+</code></pre>
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+</TabItem>
+</Tabs>
+````
