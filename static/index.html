@@ -1,0 +1,78 @@
+<html>
+
+	<head>
+
+		<title>PortalNodes | Bin</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/852878452569800734/1085939668274659348/Untitled-removebg-preview_1.png">
+		<meta name="description" content="Easily share and store your code snippets and notes with our user-friendly bin service. Secure, fast, and reliable.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://paste.portalnodes.dev/">
+		<meta property="og:title" content="PortalNodes | Bin">
+		<meta property="og:description" content="Easily share and store your code snippets and notes with our user-friendly bin service. Secure, fast, and reliable.">
+		<meta name="theme-color" content="#030ad8" />
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="https://paste.portalnodes.dev/">
+		<meta property="twitter:title" content="PortalNodes | Free Bot Hosting">
+		<meta property="twitter:description" content="Easily share and store your code snippets and notes with our user-friendly bin service. Secure, fast, and reliable. ">
+		<link rel="stylesheet" type="text/css" href="solarized_dark.css"/>
+		<link rel="stylesheet" type="text/css" href="application.css"/>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="highlight.min.js"></script>
+		<script type="text/javascript" src="application.min.js"></script>
+
+		<meta name="robots" content="noindex,nofollow"/>
+
+		<script type="text/javascript">
+			var app = null;
+			// Handle pops
+			var handlePop = function(evt) {
+				var path = evt.target.location.pathname;
+				if (path === '/') { app.newDocument(true); }
+				else { app.loadDocument(path.substring(1, path.length)); }
+			};
+			// Set up the pop state to handle loads, skipping the first load
+			// to make chrome behave like others:
+			// http://code.google.com/p/chromium/issues/detail?id=63040
+			setTimeout(function() {
+				window.onpopstate = function(evt) {
+					try { handlePop(evt); } catch(err) { /* not loaded yet */ }
+				};
+			}, 1000);
+			// Construct app and load initial path
+			$(function() {
+				app = new haste('PortalNodes', { twitter: true });
+				handlePop({ target: window });
+			});
+		</script>
+
+	</head>
+
+	<body>
+		<ul id="messages"></ul>
+
+		<div id="key">`
+		  <div id="pointer" style="display:none;"></div>
+			<div id="box1">
+				<a href="https://portalnodes.dev/" class="logo"></a>
+			</div>
+			<div id="box2">
+				<button class="save function button-picture">Save</button>
+				<button class="new function button-picture">New</button>
+				<button class="duplicate function button-picture">Duplicate & Edit</button>
+				<button class="raw function button-picture">Just Text</button>
+			</div>
+			<div id="box3" style="display:none;">
+				<div class="label"></div>
+				<div class="shortcut"></div>
+			</div>
+		</div>
+
+		<div id="linenos"></div>
+		<pre id="box" style="display:none;" class="hljs" tabindex="0"><code></code></pre>
+		<textarea spellcheck="false" style="display:none;"></textarea>
+
+	<script>(function(){var js = "window['__CF$cv$params']={r:'7b278c3e6ef7ba4a',m:'_FS4YWOZefFLuq50J6GMVswdGDUSc9B3tfwpM._ucsk-1680590300-0-AdtjF44HjoTBrb/VyiV+JvWnwvX9DK7xzb4MqTqldWx2AxTKKWOThDb6W4KQPBBoL1D2NGZ5/WTTgIHkzrITF4I6WO1t+g/jMslWCHPlM8zylRixOQDgPg9RPs+4yzNI2Q==',s:[0xe876e4eeb4,0x39e9e2147c],u:'/cdn-cgi/challenge-platform/h/b'};var now=Date.now()/1000,offset=14400,ts=''+(Math.floor(now)-Math.floor(now%offset)),_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/h/b/scripts/alpha/invisible.js?ts='+ts,document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.nonce = '';_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script></body>
+
+</html>

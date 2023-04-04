@@ -1,101 +1,399 @@
----
-_build:
-  render: never
-  list: never
----
-(This guide only appears on GitHub, not the website, because it
-**intentionally** does not include YAML front-matter.)
+# Important announcement:
 
-# Knative documentation
+## [Soon a new version of Hastebin will be launched!](https://github.com/toptal/haste-server/issues/429)
 
-Welcome to the source file repository for our documentation on
-https://knative.dev.
+[Check here what you need to know.](https://github.com/toptal/haste-server/issues/429)
 
-## Website
+.    
+.    
+.    
 
-The Knative documentation website is built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+# Haste
 
-### View published documentation
+Haste is an open-source pastebin software written in node.js, which is easily
+installable in any network.  It can be backed by either redis or filesystem,
+and has a very easy adapter interface for other stores.  A publicly available
+version can be found at [hastebin.com](http://hastebin.com)
 
-View all Knative documentation and walk-through our code samples on the
-[website](https://knative.dev).
+Major design objectives:
 
-The Knative website includes versioned docs for recent releases, the Knative
-blog, links to all community resources, as well as Knative governance and
-contributor guidelines.
+* Be really pretty
+* Be really simple
+* Be easy to set up and use
 
-### Run the website locally
+Haste works really well with a little utility called
+[haste-client](https://github.com/seejohnrun/haste-client), allowing you
+to do things like:
 
-For instructions, see Knative's [docs contributor guide](contribute-to-docs/getting-started/previewing-docs-locally.md).
+`cat something | haste`
 
-### Website source files
+which will output a URL to share containing the contents of `cat something`'s
+STDOUT.  Check the README there for more details and usages.
 
-Source files for the documentation on the website are located within the
-[`/docs`](docs) directory of this repo.
+## Tested Browsers
 
-### Documentation versions for Knative releases
+* Firefox 8
+* Chrome 17
+* Safari 5.3
 
-Each release of the Knative docs is available in the website (starting with
-0.3) and their source files are all stored in
-[branches of this repo](doc-releases.md).
+## Installation
 
-## Contributing to docs
+1.  Download the package, and expand it
+2.  Explore the settings inside of config.js, but the defaults should be good
+3.  `npm install`
+4.  `npm start` (you may specify an optional `<config-path>` as well)
 
-We're excited that you're interested in contributing to the Knative documentation! Check out the resources below to get started.
+## Settings
 
-### Getting started
+* `host` - the host the server runs on (default localhost)
+* `port` - the port the server runs on (default 7777)
+* `keyLength` - the length of the keys to user (default 10)
+* `maxLength` - maximum length of a paste (default 400000)
+* `staticMaxAge` - max age for static assets (86400)
+* `recompressStaticAssets` - whether or not to compile static js assets (true)
+* `documents` - static documents to serve (ex: http://hastebin.com/about.com)
+  in addition to static assets.  These will never expire.
+* `storage` - storage options (see below)
+* `logging` - logging preferences
+* `keyGenerator` - key generator options (see below)
+* `rateLimits` - settings for rate limiting (see below)
 
-If you want to contribute a fix or add new content to the documentation, you can
-navigate through the [`/docs`](docs) repo or use the `Edit this page` pencil icon on each of the pages of
-the website.
+## Rate Limiting
 
-Before you can contribute, first start by reading the Knative contributor
-guidelines and learning about our community and requirements. In addition to
-reading about how to contribute to the docs, you should take a moment to learn
-about the Knative code of conduct, governance, values, and the various working
-groups and committees.
+When present, the `rateLimits` option enables built-in rate limiting courtesy
+of `connect-ratelimit`.  Any of the options supported by that library can be
+used and set in `config.js`.
 
-[Knative community and contributor guidelines](https://github.com/knative/community/)
+See the README for [connect-ratelimit](https://github.com/dharmafly/connect-ratelimit)
+for more information!
 
-Source files for all Knative community and governance topics are located
-separately in the [knative/community](https://github.com/knative/community/)
-repo.
+## Key Generation
 
-To help you get started, see the following resources:
+### Phonetic
 
-- [Knative docs contributor's guide](contribute-to-docs/README.md) -- Contains information about how
-  to contribute.
+Attempts to generate phonetic keys, similar to `pwgen`
 
-- New content templates:
-  - [Concept](contribute-to-docs/templates/template-concept.md)
-  - [Procedure](contribute-to-docs/templates/template-procedure.md)
-  - [Troubleshooting](contribute-to-docs/templates/template-troubleshooting.md)
-  - [Blog](contribute-to-docs/templates/template-blog-entry.md)
+``` json
+{
+  "type": "phonetic"
+}
+```
 
-### Getting help
+### Random
 
-- [#knative-documentation on the CNCF Slack](https://cloud-native.slack.com/archives/C04LY5G9ED7) -- The #knative-documentation channel
-  is the best place to go if you have questions about making changes to the
-  documentation. We're happy to help!
+Generates a random key
 
-- [Documentation working group](https://github.com/knative/community/blob/main/working-groups/WORKING-GROUPS.md#documentation) -- Come join
-  us in the working group to meet other docs contributors and ask any questions
-  you might have.
+``` json
+{
+  "type": "random",
+  "keyspace": "abcdef"
+}
+```
 
-## Help and support
+The _optional_ keySpace argument is a string of acceptable characters
+for the key.
 
-Your help and feedback is always welcome!
+## Storage
 
-If you find an issue let us know, either by clicking the `Create Issue` on any
-of the website pages, or by directly opening an
-[issue](https://github.com/knative/docs/issues/new/choose) here in the repo.
+### File
 
-If you have a question that you can't find an answer to, we would also like to
-hear about that too. In addition to our docs, you can also reach out to the
-community for assistance. For example, ask a documentation specific question on
-the `#knative-documentation` channel in [Slack](https://cloud-native.slack.com/archives/C04LY5G9ED7).
+To use file storage (the default) change the storage section in `config.js` to
+something like:
 
-Also see the [Knative community resource pages](https://knative.dev/docs/community/)
-for a list of all the available community resources, including links to the
-various community discussion groups for both development as well as
-troubleshooting.
+``` json
+{
+  "path": "./data",
+  "type": "file"
+}
+```
+
+where `path` represents where you want the files stored.
+
+File storage currently does not support paste expiration, you can follow [#191](https://github.com/seejohnrun/haste-server/issues/191) for status updates.
+
+### Redis
+
+To use redis storage you must install the `redis` package in npm, and have
+`redis-server` running on the machine.
+
+`npm install redis`
+
+Once you've done that, your config section should look like:
+
+``` json
+{
+  "type": "redis",
+  "host": "localhost",
+  "port": 6379,
+  "db": 2
+}
+```
+
+You can also set an `expire` option to the number of seconds to expire keys in.
+This is off by default, but will constantly kick back expirations on each view
+or post.
+
+All of which are optional except `type` with very logical default values.
+
+If your Redis server is configured for password authentification, use the `password` field.
+
+### Postgres
+
+To use postgres storage you must install the `pg` package in npm
+
+`npm install pg`
+
+Once you've done that, your config section should look like:
+
+``` json
+{
+  "type": "postgres",
+  "connectionUrl": "postgres://user:password@host:5432/database"
+}
+```
+
+You can also just set the environment variable for `DATABASE_URL` to your database connection url.
+
+You will have to manually add a table to your postgres database:
+
+`create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));`
+
+You can also set an `expire` option to the number of seconds to expire keys in.
+This is off by default, but will constantly kick back expirations on each view
+or post.
+
+All of which are optional except `type` with very logical default values.
+
+### MongoDB
+
+To use mongodb storage you must install the 'mongodb' package in npm
+
+`npm install mongodb`
+
+Once you've done that, your config section should look like:
+
+``` json
+{
+  "type": "mongo",
+  "connectionUrl": "mongodb://localhost:27017/database"
+}
+```
+
+You can also just set the environment variable for `DATABASE_URL` to your database connection url.
+
+Unlike with postgres you do NOT have to create the table in your mongo database prior to running.
+
+You can also set an `expire` option to the number of seconds to expire keys in.
+This is off by default, but will constantly kick back expirations on each view or post.
+
+### Memcached
+
+To use memcache storage you must install the `memcached` package via npm
+
+`npm install memcached`
+
+Once you've done that, your config section should look like:
+
+``` json
+{
+  "type": "memcached",
+  "host": "127.0.0.1",
+  "port": 11211
+}
+```
+
+You can also set an `expire` option to the number of seconds to expire keys in.
+This behaves just like the redis expirations, but does not push expirations
+forward on GETs.
+
+All of which are optional except `type` with very logical default values.
+
+### RethinkDB
+
+To use the RethinkDB storage system, you must install the `rethinkdbdash` package via npm
+
+`npm install rethinkdbdash`
+
+Once you've done that, your config section should look like this:
+
+``` json
+{
+  "type": "rethinkdb",
+  "host": "127.0.0.1",
+  "port": 28015,
+  "db": "haste"
+}
+```
+
+In order for this to work, the database must be pre-created before the script is ran.
+Also, you must create an `uploads` table, which will store all the data for uploads.
+
+You can optionally add the `user` and `password` properties to use a user system.
+
+### Google Datastore
+
+To use the Google Datastore storage system, you must install the `@google-cloud/datastore` package via npm
+
+`npm install @google-cloud/datastore`
+
+Once you've done that, your config section should look like this:
+
+``` json
+{
+  "type": "google-datastore"
+}
+```
+
+Authentication is handled automatically by [Google Cloud service account credentials](https://cloud.google.com/docs/authentication/getting-started), by providing authentication details to the GOOGLE_APPLICATION_CREDENTIALS environmental variable.
+
+### Amazon S3
+
+To use [Amazon S3](https://aws.amazon.com/s3/) as a storage system, you must
+install the `aws-sdk` package via npm:
+
+`npm install aws-sdk`
+
+Once you've done that, your config section should look like this:
+
+```json
+{
+  "type": "amazon-s3",
+  "bucket": "your-bucket-name",
+  "region": "us-east-1"
+}
+```
+
+Authentication is handled automatically by the client. Check
+[Amazon's documentation](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html)
+for more information. You will need to grant your role these permissions to
+your bucket:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::your-bucket-name-goes-here/*"
+        }
+    ]
+}
+```
+
+## Docker
+
+### Build image
+
+```bash
+docker build --tag haste-server .
+```
+
+### Run container
+
+For this example we will run haste-server, and connect it to a redis server
+
+```bash
+docker run --name haste-server-container --env STORAGE_TYPE=redis --env STORAGE_HOST=redis-server --env STORAGE_PORT=6379 haste-server
+```
+
+### Use docker-compose example
+
+There is an example `docker-compose.yml` which runs haste-server together with memcached
+
+```bash
+docker-compose up
+```
+
+### Configuration
+
+The docker image is configured using environmental variables as you can see in the example above.
+
+Here is a list of all the environment variables
+
+### Storage
+
+|          Name          | Default value |                                                  Description                                                  |
+| :--------------------: | :-----------: | :-----------------------------------------------------------------------------------------------------------: |
+|      STORAGE_TYPE      |   memcached   |    Type of storage . Accepted values: "memcached","redis","postgres","rethinkdb", "amazon-s3", and "file"     |
+|      STORAGE_HOST      |   127.0.0.1   |                 Storage host. Applicable for types: memcached, redis, postgres, and rethinkdb                 |
+|      STORAGE_PORT      |     11211     |           Port on the storage host. Applicable for types: memcached, redis, postgres, and rethinkdb           |
+| STORAGE_EXPIRE_SECONDS |    2592000    | Number of seconds to expire keys in. Applicable for types. Redis, postgres, memcached. `expire` option to the |
+|       STORAGE_DB       |       2       |                    The name of the database. Applicable for redis, postgres, and rethinkdb                    |
+|    STORAGE_PASSWORD    |               |                       Password for database. Applicable for redis, postges, rethinkdb .                       |
+|    STORAGE_USERNAME    |               |                           Database username. Applicable for postgres, and rethinkdb                           |
+|   STORAGE_AWS_BUCKET   |               |                          Applicable for amazon-s3. This is the name of the S3 bucket                          |
+|   STORAGE_AWS_REGION   |               |                      Applicable for amazon-s3. The region in which the bucket is located                      |
+|    STORAGE_FILEPATH    |               |                            Path to file to save data to. Applicable for type file                             |
+
+### Logging
+
+|       Name        | Default value | Description |
+| :---------------: | :-----------: | :---------: |
+|   LOGGING_LEVEL   |    verbose    |             |
+|   LOGGING_TYPE=   |    Console    |
+| LOGGING_COLORIZE= |     true      |
+
+### Basics
+
+|           Name           |  Default value   |                                        Description                                        |
+| :----------------------: | :--------------: | :---------------------------------------------------------------------------------------: |
+|           HOST           |     0.0.0.0      |                         The hostname which the server answers on                          |
+|           PORT           |       7777       |                          The port on which the server is running                          |
+|        KEY_LENGTH        |        10        |                              the length of the keys to user                               |
+|        MAX_LENGTH        |      400000      |                                 maximum length of a paste                                 |
+|      STATIC_MAX_AGE      |      86400       |                                 max age for static assets                                 |
+| RECOMPRESS_STATIC_ASSETS |       true       |                        whether or not to compile static js assets                         |
+|    KEYGENERATOR_TYPE     |     phonetic     |             Type of key generator. Acceptable values: "phonetic", or "random"             |
+|  KEYGENERATOR_KEYSPACE   |                  |                  keySpace argument is a string of acceptable characters                   |
+|        DOCUMENTS         | about=./about.md | Comma separated list of static documents to serve. ex: \n about=./about.md,home=./home.md |
+
+### Rate limits
+
+|                 Name                 |             Default value             |                                       Description                                        |
+| :----------------------------------: | :-----------------------------------: | :--------------------------------------------------------------------------------------: |
+|   RATELIMITS_NORMAL_TOTAL_REQUESTS   |                  500                  | By default anyone uncategorized will be subject to 500 requests in the defined timespan. |
+| RATELIMITS_NORMAL_EVERY_MILLISECONDS |                 60000                 |             The timespan to allow the total requests for uncategorized users             |
+| RATELIMITS_WHITELIST_TOTAL_REQUESTS  |                                       |      By default client names in the whitelist will not have their requests limited.      |
+|  RATELIMITS_WHITELIST_EVERY_SECONDS  |                                       |      By default client names in the whitelist will not have their requests limited.      |
+|         RATELIMITS_WHITELIST         | example1.whitelist,example2.whitelist |           Comma separated list of the clients which are in the whitelist pool            |
+| RATELIMITS_BLACKLIST_TOTAL_REQUESTS  |                                       |    By default client names in the blacklist will be subject to 0 requests per hours.     |
+|  RATELIMITS_BLACKLIST_EVERY_SECONDS  |                                       |     By default client names in the blacklist will be subject to 0 requests per hours     |
+|         RATELIMITS_BLACKLIST         | example1.blacklist,example2.blacklist |           Comma separated list of the clients which are in the blacklistpool.            |
+
+## Author
+
+John Crepezzi <john.crepezzi@gmail.com>
+
+## License
+
+(The MIT License)
+
+Copyright © 2011-2012 John Crepezzi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the ‘Software’), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE
+
+### Other components:
+
+* jQuery: MIT/GPL license
+* highlight.js: Copyright © 2006, Ivan Sagalaev
+* highlightjs-coffeescript: WTFPL - Copyright © 2011, Dmytrii Nagirniak
