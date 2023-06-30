@@ -1,7 +1,5 @@
-npm-debug.log
-node_modules
-*.swp
-*.swo
-data
-*.DS_Store
-docker-compose.override.yml
+.idea/
+.vuepress/dist
+node_modules/
+
+yarn-error.log
