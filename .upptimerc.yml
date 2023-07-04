@@ -1,0 +1,55 @@
+# Change these first
+owner: jeanp94 # Your GitHub organization or username, where this repository lives
+repo: server # The name of this repository
+
+sites:
+  - name: Google
+    url: https://www.google.com
+  - name: kayser
+    url: https://www.kayser.pe
+  - name: promotoras kayser
+    url: https://www.promotoraskayser.pe
+  - name: kayser contigo
+    url: https://kaysercontigo.pe
+  - name: monark
+    url: https://www.monark.com.pe
+  - name: Siempre conectado HP
+    url: https://www.siempreconectado.pe
+  - name: Distribuidora Navarrete
+    url: https://www.distribuidoranavarrete.com.pe
+  - name: Jafi Bike
+    url: https://www.jafibike.com.pe
+  - name: Consultoria
+    url: https://www.dyj-consultores.com.pe
+  - name: Cama Clinica
+    url: https://www.camaclinica.pe
+  - name: HPimprime
+    url: https://imprimeloqueamas.com
+  - name: ADM RYZEN
+    url: https://amd-ryzen.com.pe
+  - name: Maria Almenara
+    url: https://madmin7fgx.mariaalmenara.pe/index.php/madmin/permissions_user/index/key/e4871feb4f177ba1c9b699f37e218d95/
+  - name: Tracker 360
+    url: tracker360.mariaalmenara.net
+  - name: Api Tracker360
+    url: http://transferencias.mariaalmenara.net:2712/typeCount/list
+  - name: Api tracker360 Azure
+    url: https://tracker360api.azurewebsites.net/reason/list
+   
+status-website:
+  # Add your custom domain name, or remove the `cname` line if you don't have a domain
+  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
+  baseUrl: /server
+  # baseUrl: /your-repo-name
+  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
+  name: Upptime
+  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
+  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  navbar:
+    - title: Status
+      href: /
+    - title: GitHub
+      href: https://github.com/$OWNER/$REPO
+
+# Upptime also supports notifications, assigning issues, and more
+# See https://upptime.js.org/docs/configuration
